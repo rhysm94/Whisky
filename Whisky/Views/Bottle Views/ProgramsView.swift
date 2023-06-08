@@ -45,7 +45,9 @@ struct ProgramItemView: View {
     var body: some View {
         HStack {
             Text(program.name)
+
             Spacer()
+
             if showButtons {
                 Button {
                     Task(priority: .userInitiated) {
@@ -71,6 +73,9 @@ struct ProgramItemView: View {
             actions: { /* Blank, as we get an OK button for free */ },
             message: { Text("alert.info \(program.name)") }
         )
+        #if swift(>=5.9)
+        .dialogSeverity(.critical)
+        #endif
     }
 }
 
